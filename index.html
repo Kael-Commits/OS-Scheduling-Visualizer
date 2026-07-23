@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OS CPU Scheduling Visualizer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="landing-page" id="landingPage">
+  <div class="hero-content">
+    <div class="hero-badge">Operating Systems Project 01</div>
+    <h1>CPU Scheduling</h1>
+    <p>
+      Simulate and visualize CPU scheduling algorithms using animated Gantt charts,
+      process metrics, and step-by-step execution.
+    </p>
+
+    <button id="getStartedBtn" class="get-started-btn">
+      Get Started
+    </button>
+  </div>
+
+  <div class="hero-animation">
+    <div class="cpu-chip">CPU</div>
+    <div class="orbit orbit-one"></div>
+    <div class="orbit orbit-two"></div>
+    <div class="process-dot dot-one">P1</div>
+    <div class="process-dot dot-two">P2</div>
+    <div class="process-dot dot-three">P3</div>
+  </div>
+</div>
+<div class="app hidden-app" id="mainApp">
+
+<header class="top-bar gantt-banner" aria-label="Animated Gantt chart banner">
+  <div class="banner-marquee">
+    <div class="banner-track">
+      <div class="banner-block block-a">P1</div>
+      <div class="banner-block block-b">P2</div>
+      <div class="banner-block block-c">P3</div>
+      <div class="banner-block block-d">P4</div>
+      <div class="banner-block block-e">P5</div>
+      <div class="banner-block block-f">P6</div>
+      <div class="banner-block block-g">P7</div>
+      <div class="banner-block block-h">P8</div>
+
+      <div class="banner-block block-a">P1</div>
+      <div class="banner-block block-b">P2</div>
+      <div class="banner-block block-c">P3</div>
+      <div class="banner-block block-d">P4</div>
+      <div class="banner-block block-e">P5</div>
+      <div class="banner-block block-f">P6</div>
+      <div class="banner-block block-g">P7</div>
+      <div class="banner-block block-h">P8</div>
+    </div>
+  </div>
+</header>
+
+    <div class="grid-layout">
+      <!-- LEFT SIDE -->
+      <section class="panel">
+        <h2>Process Input</h2>
+
+        <div class="input-grid">
+          <label>
+            Process Count
+            <input type="number" id="processCount" min="1" value="4" />
+          </label>
+
+          <button onclick="generateProcessInputs()">Create Inputs</button>
+          <button onclick="generateRandomProcesses()">Generate Random</button>
+        </div>
+
+        <div id="processInputs" class="process-inputs"></div>
+
+        <h2>Algorithm</h2>
+        <select id="algorithm">
+          <option value="fcfs">First Come First Served (FCFS/FIFO)</option>
+          <option value="sjf">Shortest Job First (SJF)</option>
+          <option value="srtf">Shortest Remaining Time First (SRTF)</option>
+          <option value="rr">Round Robin</option>
+          <option value="mlfq">Multilevel Feedback Queue (MLFQ)</option>
+        </select>
+
+        <div class="quantum-box">
+          <label>
+            RR Quantum
+            <input type="number" id="rrQuantum" min="1" value="2" />
+          </label>
+
+          <label>
+            Q0 Quantum
+            <input type="number" id="q0" min="1" value="2" />
+          </label>
+
+          <label>
+            Q1 Quantum
+            <input type="number" id="q1" min="1" value="4" />
+          </label>
+
+          <label>
+            Q2 Quantum
+            <input type="number" id="q2" min="1" value="6" />
+          </label>
+
+          <label>
+            Q3 Quantum
+            <input type="number" id="q3" min="1" value="8" />
+          </label>
+        </div>
+
+        <button class="simulate-btn" onclick="runSimulation()">Simulate</button>
+      </section>
+
+      <!-- RIGHT SIDE -->
+      <section class="panel">
+        <h2>Process Status</h2>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Process</th>
+                <th>Status</th>
+                <th>Completion %</th>
+                <th>Remaining Time</th>
+                <th>Waiting Time</th>
+              </tr>
+            </thead>
+            <tbody id="statusTable"></tbody>
+          </table>
+        </div>
+
+        <div class="info-grid">
+          <div class="info-box">
+            <h3>CPU</h3>
+            <p id="cpuStatus">---</p>
+          </div>
+
+          <div class="info-box">
+            <h3>Next Queue</h3>
+            <p id="nextQueue">---</p>
+          </div>
+
+          <div class="info-box">
+            <h3>Action Message</h3>
+            <p id="actionMessage">Waiting for simulation...</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="panel">
+      <h2>Gantt Chart</h2>
+      <p class="note">Each box represents a CPU execution block.</p>
+      <div id="ganttChart" class="gantt"></div>
+      <pre id="asciiGantt"></pre>
+    </section>
+
+    <section class="panel">
+      <h2>Process Metrics</h2>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>PID</th>
+              <th>Arrival Time</th>
+              <th>Burst Time</th>
+              <th>Completion Time</th>
+              <th>Turnaround Time</th>
+              <th>Waiting Time</th>
+              <th>Response Time</th>
+            </tr>
+          </thead>
+          <tbody id="resultTable"></tbody>
+        </table>
+      </div>
+
+      <div id="averages" class="averages"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Step-by-Step Execution</h2>
+      <div id="steps" class="steps"></div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html> 
