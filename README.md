@@ -4,9 +4,7 @@
 
 I made this project to help visualize how CPU scheduling works in an operating system. Instead of only showing numbers, I wanted the program to show how each process is executed using a Gantt chart animation, so it is easier to understand the order of execution.
 
-This project lets me input processes manually or generate random processes, then choose a scheduling algorithm to simulate. After running the simulation, the program displays the Gantt chart, process table, completion time, turnaround time, waiting time, response time, and the averages. ## Use of AI Tools
-
-I created this project with the help of AI tools like ChatGPT. I used it as a guide for understanding the scheduling algorithms, organizinga and creating the code, fixing errors, and improving the project documentation.
+This project lets me input processes manually or generate random processes, then choose a scheduling algorithm to simulate. After running the simulation, the program displays the Gantt chart, process table, completion time, turnaround time, waiting time, response time, and the averages. I created this project with the help of AI tools like ChatGPT. I used it as a guide for understanding the scheduling algorithms, organizinga and creating the code, fixing errors, and improving the project documentation.
 
 This project was created for OS CPU Scheduling Visualization.
 
